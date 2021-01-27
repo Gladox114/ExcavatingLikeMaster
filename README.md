@@ -15,7 +15,7 @@
 * vectorCalc.lua
 
 
-**optional Libraries:**
+**Optional Libraries:**
 
 * fuelCheck.lua
 
