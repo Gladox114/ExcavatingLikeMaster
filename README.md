@@ -1,17 +1,24 @@
 # ExcavatingLikeMaster
 
+
 **Main Executable:**
 
-excavate.lua
+* excavate.lua
+
 
 **Libraries:**
 
-gotoGPS.lua
-movement.lua
-vectorCalc.lua
+* gotoGPS.lua
+
+* movement.lua
+
+* vectorCalc.lua
+
 
 **optional Libraries:**
 
-fuelCheck.lua
-invCheck.lua
-torch.lua
+* fuelCheck.lua
+
+* invCheck.lua
+
+* torch.lua
