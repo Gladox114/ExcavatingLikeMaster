@@ -127,7 +127,7 @@ function move.main(MoveDirection,digFunc)
         local moved,error = turtle[MoveDirection]()
         if moved then 
             virt[MoveDirection]()
-            print(turtle.location)
+            --print(turtle.location)
             return
         end
         if error == "Movement obstructed" then
