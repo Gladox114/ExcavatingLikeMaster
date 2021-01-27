@@ -9,7 +9,7 @@ excavate = {
     forward = 2,
     left = 0,
     up = -8,
-    startFacing = 1,
+    startFacing = 1, -- keep this one
     startLocation = turtle.location,
     offset={
         forward = 0,
@@ -35,7 +35,7 @@ end
 
 stepTable = {}
 
-function table.clone(org)
+function table.clone(org) -- cheap way to copy tables
     return {table.unpack(org)}
 end
 
@@ -189,28 +189,30 @@ function wholeLoop(remaining,forwardDir,directionUp)
     return remaining,forwardDir
 end
 
+-- Precalculate the Room that will me digged --
+---------------------------------------------------------
+-- It will store every coordinate in table "stepTable" --
+
 function calcRoom()
-    virtLocation = turtle.location
-    baseAxis= turtle.location.z
+    virtLocation = turtle.location -- save the current location as a virtual location
+    baseAxis= turtle.location.z -- get the axis that will be used to go Left later. For now it's static
     forwardDir=-1
     -- check if up is inverted
-    --if excavate.up < 0 then -- if it's -1 then do the stuff inverted. if 0 then do nothing.
-        if excavate.up > 0 then -- it's 1 or above
-            cleared = firstY(excavate.up,1)
-            remaining = excavate.up - cleared
-            while remaining > 0 do
-                print("Remaining: "..remaining)
-                remaining,forwardDir = wholeLoop(remaining,forwardDir,1)
-            end
-        elseif excavate.up < 0 then -- it's -1 or under
-            cleared = firstY(excavate.up,-1)
-            remaining = excavate.up*-1 - cleared
+    if excavate.up > 0 then -- it's 1 or above
+        cleared = firstY(excavate.up,1) -- Excavate the first Layer and return the layers cleared.
+        remaining = excavate.up - cleared
+        while remaining > 0 do 
             print("Remaining: "..remaining)
-            while remaining > 0 do
-                remaining,forwardDir = wholeLoop(remaining,forwardDir,-1)
-            end
+            remaining,forwardDir = wholeLoop(remaining,forwardDir,1)
         end
-    --end
+    elseif excavate.up < 0 then -- it's -1 or under
+        cleared = firstY(excavate.up,-1) -- Excavate the first Layer and return the layers cleared.
+        remaining = excavate.up - cleared
+        print("Remaining: "..remaining)
+        while remaining > 0 do
+            remaining,forwardDir = wholeLoop(remaining,forwardDir,-1)
+        end
+    end
 end
 
 function calcRoomEfficient()
