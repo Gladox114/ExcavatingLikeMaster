@@ -1,5 +1,4 @@
 # ExcavatingLikeMaster
-<<<<<<< HEAD
 
 
 **Main Executable:**
@@ -23,5 +22,3 @@
 * invCheck.lua
 
 * torch.lua
-=======
->>>>>>> 512ca3727449dc9a79600db5b0cf7e7fc2cc78e9
