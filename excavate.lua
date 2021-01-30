@@ -7,13 +7,13 @@ if not turtle.facing then   turtle.facing = 3                     end
 
 -- config --
 excavate = {
-    forward = 2,
-    left = 3,
-    up = 3,
+    forward = 12,
+    left = 11,
+    up = 2,
 
     offset={
-        forward = 1,
-        left = 1,
+        forward = 0,
+        left = 0,
         up = 0
     },
 
