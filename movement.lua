@@ -126,6 +126,8 @@ function move.main(MoveDirection,digFunc)
         
         local moved,error = turtle[MoveDirection]()
         if moved then 
+            -- This is an Important part for offline walking
+            -- This will updates every step in turtle.location
             virt[MoveDirection]()
             --print(turtle.location)
             return

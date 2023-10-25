@@ -51,7 +51,7 @@ function inv.checkBlacklisted(object,blacklist)
     return false
 end
 
-function inv.emptyInv()
+function inv.emptyFullInv()
     for i=1,16 do
         if inv.checkBlacklisted(turtle.getItemDetail(i)["name"],inv.blacklist) == false then
             turtle.select(i)
@@ -65,7 +65,7 @@ function inv.gotoChest()
     local saveLocation = turtle.location
     local distance = inv.chestItemsPos - turtle.location
     Goto.position(distance,Goto.getAxis(turtle.facing),false,move)
-    inv.emptyInv()
+    inv.emptyFullInv()
     distance = saveLocation - turtle.location
     Goto.position(distance,Goto.getAxis(turtle.facing),true,move)
     turn.to(saveFacing)

@@ -1,4 +1,24 @@
--- downloads the "github repository downloader", runs it and then downloads the StrippingTillDeath main repository
--- http://www.computercraft.info/forums2/index.php?/topic/4072-github-repository-downloader/
+-- This file Downloads all files from github https://github.com/Gladox114/ExcavatingLikeMaster
 
-shell.run("pastebin run wPtGKMam Gladox114 ExcavatingLikeMaster / .")
+-- create a list full of files (excavate.lua, invCheck.lua, ...)
+
+local files = {
+  "excavate.lua",
+  "invCheck.lua",
+  "movement.lua",
+  "fuelCheck.lua",
+  "torch.lua",
+  "gotoGPS.lua",
+  "excavate.lua",
+  "vectorCalc.lua",
+  "test.lua"
+}
+
+
+-- use wget and github raw page to download each file
+
+
+for i = 1, #files do
+  shell.run("wget https://raw.githubusercontent.com/Gladox114/ExcavatingLikeMaster/master/" ..
+    files[i] .. " " .. files[i])
+end
