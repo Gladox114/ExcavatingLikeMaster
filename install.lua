@@ -21,5 +21,5 @@ shell.run("mkdir " .. folder)
 
 for i = 1, #files do
   shell.run("wget https://raw.githubusercontent.com/Gladox114/ExcavatingLikeMaster/master/" ..
-    files[i] .. " " .. folder .. " " .. files[i])
+    files[i] .. " " .. folder .. "/" .. files[i])
 end
