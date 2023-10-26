@@ -224,7 +224,7 @@ printWholeList(stepTable)
 function execute46(stepTable)
     for i, v in pairs(stepTable) do
         dest = v.position - turtle.location -- get delta to the position you are going to
-        Goto.facingFirst(dest, digFunc[v.digN], turtle.facing)
+        Goto.facingFirst_old(dest, digFunc[v.digN], turtle.facing)
     end
 end
 
