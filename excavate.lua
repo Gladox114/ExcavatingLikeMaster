@@ -1,30 +1,11 @@
 --require("fuelCheck")
-require("movement")
-require("gotoGPS")
+require("GodOfLegs/movement")
+require("GodOfLegs/gotoGPS")
 require("config")
 
 if not turtle.location then turtle.location = vector.new(0, 0, 0) end
 if not turtle.facing then turtle.facing = 3 end
 
--- config --
-if not excavate then
-    excavate = {
-        forward = 12,
-        left = 11,
-        up = 2,
-
-        offset = {
-            forward = 0,
-            left = 0,
-            up = 0
-        },
-
-        -- keep out --
-        startFacing = 1, -- keep this one
-        startLocation = turtle.location
-        ---------------
-    }
-end
 
 function doItRight(input)
     if excavate.left > 0 then
