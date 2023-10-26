@@ -1,7 +1,7 @@
 --require("fuelCheck")
+require("config")
 require("GodOfLegs/movement")
 require("GodOfLegs/gotoGPS")
-require("config")
 
 if not turtle.location then turtle.location = vector.new(0, 0, 0) end
 if not turtle.facing then turtle.facing = 3 end
@@ -207,6 +207,35 @@ end
 
 calcRoom()
 
+
+function deleteAllPositionsTillPos(list, tillPosition)
+
+    for number, entry in pairs(list) do
+        if type(entry) == "table" then
+            for type, value in pairs(entry) do
+                print(number, type, value)
+                if type == "position" and vector.vectorEquals(value, tillPosition) then
+                    print("BREAK")
+                    return
+                end
+                list[number] = nil
+            end
+        end
+    end
+end
+
+function deleteAllPositionsTillNum(list, tillNumber)
+
+    for number, entry in pairs(list) do
+        if number == tillNumber then
+            return
+        end
+
+        list[number] = nil
+    end
+
+end
+
 function printWholeList(list)
     for i, v in pairs(list) do
         if type(v) == "table" then
@@ -220,6 +249,7 @@ function printWholeList(list)
 end
 
 printWholeList(stepTable)
+--deleteAllPositionsTillPos(stepTable, vector.new(9, 0, -10))
 
 function execute46(stepTable)
     for i, v in pairs(stepTable) do
@@ -229,5 +259,11 @@ function execute46(stepTable)
 end
 
 --print(turtle.location)
+
+if excavate.skip.position then
+    deleteAllPositionsTillPos(stepTable, excavate.skip.position)
+elseif excavate.skip.number then
+    deleteAllPositionsTillNum(stepTable, excavate.skip.number)
+end
 
 execute46(stepTable)

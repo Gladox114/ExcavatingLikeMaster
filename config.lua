@@ -1,3 +1,6 @@
+turtle.location = vector.new(0, 0, 0)
+turtle.startPosition = turtle.location
+turtle.startFacing = 1
 require("GodOfLegs/movement")
 
 --[[ directions 
@@ -17,9 +20,8 @@ excavate = {
         left = 0,
         up = 0
     },
-
-    -- keep out --
-    startFacing = 1, -- keep this one
-    startLocation = turtle.location
-    ---------------
+    skip = {
+        num = nil,
+        position = nil
+    }
 }
