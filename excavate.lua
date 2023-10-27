@@ -266,4 +266,6 @@ elseif excavate.skip.number then
     deleteAllPositionsTillNum(stepTable, excavate.skip.number)
 end
 
-execute46(stepTable)
+if excavate.run then
+    execute46(stepTable)
+end

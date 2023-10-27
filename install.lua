@@ -4,14 +4,7 @@
 local folder = "ExcavatingLikeMaster"
 local files = {
   "excavate.lua",
-  "invCheck.lua",
-  "movement.lua",
-  "fuelCheck.lua",
-  "torch.lua",
-  "gotoGPS.lua",
-  "excavate.lua",
-  "vectorCalc.lua",
-  "test.lua"
+  "config-default-excavate.lua"
 }
 
 
@@ -20,6 +13,6 @@ local files = {
 shell.run("mkdir " .. folder)
 
 for i = 1, #files do
-  shell.run("wget https://raw.githubusercontent.com/Gladox114/ExcavatingLikeMaster/master/" ..
+  shell.run("wget https://raw.githubusercontent.com/Gladox114/" .. folder .. "/master/" ..
     files[i] .. " " .. folder .. "/" .. files[i])
 end
