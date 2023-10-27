@@ -22,6 +22,6 @@ end
 -- get all dependencies installed
 for i = 1, #dependencies do
   shell.run("wget https://raw.githubusercontent.com/Gladox114/" .. dependencies[i] .. "/master/" ..
-    "installer.lua installer-" .. dependencies[i] .. ".lua")
-  shell.run("installer-" .. dependencies[i] .. ".lua")
+    "install.lua install-" .. dependencies[i] .. ".lua")
+  shell.run("install-" .. dependencies[i] .. ".lua")
 end
