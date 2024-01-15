@@ -1,7 +1,7 @@
 --require("fuelCheck")
+require("GodOfLegs/gotoGPS")
 require("config")
 require("GodOfLegs/movement")
-require("GodOfLegs/gotoGPS")
 
 if not turtle.location then turtle.location = vector.new(0, 0, 0) end
 if not turtle.facing then turtle.facing = 3 end
@@ -181,8 +181,8 @@ end
 -- It will store every coordinate in table "stepTable" --
 ---------------------------------------------------------
 function calcRoom()
-    virtLocation = turtle.location -- save the current location as a virtual location
-    baseAxis = turtle.location.z - excavate.offset.left -- get the axis that will be used to go Left later. For now it's static
+    virtLocation = turtle.startPosition -- save the current location as a virtual location
+    baseAxis = turtle.startPosition.z - excavate.offset.left -- get the axis that will be used to go Left later. For now it's static
     forwardDir = 1 -- forward Direction. It will be used after the FirstY so the turtle goes to the negative direction back
 
     -- check if up is inverted
@@ -256,6 +256,25 @@ function execute46(stepTable)
         dest = v.position - turtle.location -- get delta to the position you are going to
         Goto.facingFirst_old(dest, digFunc[v.digN], turtle.facing)
     end
+end
+
+myCustomHomeFunc = function()
+    local saveLocation = turtle.location
+    local saveFacing = turtle.facing
+    print(stepTable[1])
+    -- go to the first position of the excavate
+    Goto.facingFirst_custom(stepTable[1].position, move, turtle.startFacing)
+    Goto.facingFirst_custom(turtle.startPosition, move, turtle.startFacing)
+    -- go to the chest pos
+    inv.gotoChest()
+
+    -- revert
+    Goto.facingFirst_custom(stepTable[1].position, move, dryTurn.left(turtle.startFacing))
+    Goto.facingFirst_custom(turtle.startPosition, move, dryTurn.left(turtle.startFacing))
+
+    -- back to mining job
+    Goto.facingFirst_custom(saveLocation, move, turtle.startFacing)
+    turn.to(saveFacing)
 end
 
 --print(turtle.location)
