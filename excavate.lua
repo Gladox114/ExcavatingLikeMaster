@@ -169,8 +169,7 @@ end
 
 -- same as goIntoBox but ignore left offset
 function setEnterPoint()
-    virtLocation = virtLocation + vector.new(excavate.offset.forward, excavate.offset.up, 0)
-    insertPos(stepTable, virtLocation, 1)
+    insertPos(stepTable, vector.new(excavate.offset.forward, excavate.offset.up, 0, 1)
 end
 
 -- Insert the position using offset values,
@@ -192,6 +191,8 @@ end
 -- It will store every coordinate in table "stepTable" --
 ---------------------------------------------------------
 function calcRoom()
+    -- reset the startPosition
+    virtLocation = turtle.startPosition
     forwardDir = 1 -- forward Direction. It will be used after the FirstY so the turtle goes to the negative direction back
 
     -- check if up is inverted
