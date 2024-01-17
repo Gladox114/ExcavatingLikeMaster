@@ -15,6 +15,10 @@ function doItRight(input)
     end
 end
 
+local virtLocation = turtle.startPosition -- save the current location as a virtual location
+local baseAxis = turtle.startPosition.z - excavate.offset.left -- get the axis that will be used to go Left later. For now it's static
+
+-- I don't fucking know anymore, seems like correcting by 1 block
 excavate.left = doItRight(excavate.left)
 
 
@@ -188,8 +192,6 @@ end
 -- It will store every coordinate in table "stepTable" --
 ---------------------------------------------------------
 function calcRoom()
-    virtLocation = turtle.startPosition -- save the current location as a virtual location
-    baseAxis = turtle.startPosition.z - excavate.offset.left -- get the axis that will be used to go Left later. For now it's static
     forwardDir = 1 -- forward Direction. It will be used after the FirstY so the turtle goes to the negative direction back
 
     -- check if up is inverted
