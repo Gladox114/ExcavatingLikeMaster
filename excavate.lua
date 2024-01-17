@@ -163,6 +163,13 @@ function wholeLoop(remaining, forwardDir, directionUp)
     return remaining, forwardDir
 end
 
+-- same as goIntoBox but ignore left offset
+function setEnterPoint()
+    virtLocation = virtLocation + vector.new(excavate.offset.forward, excavate.offset.up, 0)
+    insertPos(stepTable, virtLocation, 1)
+end
+
+-- Insert the position using offset values,
 function goIntoBox(up, directionUp)
     -- go into offset location --
     virtLocation = virtLocation + vector.new(excavate.offset.forward, excavate.offset.up, excavate.offset.left * -1)
@@ -189,7 +196,7 @@ function calcRoom()
     if excavate.up > 0 then -- it's 1 or above
         --cleared = firstY(excavate.up,1) -- Excavate the first Layer and return the layers cleared.
         --remaining = excavate.up - cleared
-        remaining = excavate.up
+        remaining = excavate.up -- the remaining will be subtracted by wholeLoop()
         goIntoBox(remaining, 1)
         while remaining > 0 do
             remaining, forwardDir = wholeLoop(remaining, forwardDir, 1)
@@ -205,35 +212,35 @@ function calcRoom()
     end
 end
 
-calcRoom()
-
-
 function deleteAllPositionsTillPos(list, tillPosition)
-
+    posToSave = list[1]
     for number, entry in pairs(list) do
         if type(entry) == "table" then
             for type, value in pairs(entry) do
                 print(number, type, value)
                 if type == "position" and vector.vectorEquals(value, tillPosition) then
                     print("BREAK")
+                    list[1] = posToSave
                     return
                 end
                 list[number] = nil
             end
         end
     end
+    list[1] = posToSave
 end
 
 function deleteAllPositionsTillNum(list, tillNumber)
-
+    posToSave = list[1]
     for number, entry in pairs(list) do
         if number == tillNumber then
+            list[1] = posToSave
             return
         end
 
         list[number] = nil
     end
-
+    list[1] = posToSave
 end
 
 function printWholeList(list)
@@ -248,6 +255,8 @@ function printWholeList(list)
     end
 end
 
+setEnterPoint()
+calcRoom()
 printWholeList(stepTable)
 --deleteAllPositionsTillPos(stepTable, vector.new(9, 0, -10))
 

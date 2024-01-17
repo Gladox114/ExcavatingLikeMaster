@@ -25,7 +25,7 @@ excavate = {
         up = 0
     },
     skip = {
-        num = nil, -- a value
+        number = nil, -- a value
         position = nil -- vector.new(x,y,z)
     }
 }
