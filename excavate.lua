@@ -169,7 +169,7 @@ end
 
 -- same as goIntoBox but ignore left offset
 function setEnterPoint()
-    insertPos(stepTable, vector.new(excavate.offset.forward, excavate.offset.up, 0), 1)
+    insertPos(stepTable, turtle.startPosition + vector.new(excavate.offset.forward, excavate.offset.up, 0), 1)
 end
 
 -- Insert the position using offset values,
